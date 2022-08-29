@@ -7,29 +7,29 @@ const apiInstance   = new SibApiV3Sdk.TransactionalEmailsApi();
 
 async function start () {	
     try {
-		const Dove = new Competitor('dove', "https://www.immobiliare.it/agenzie-immobiliari/164866/dove-it/?criterio=dataModifica&ordine=desc", {
-			concurrency: {
-				page: 2
-			}
-		});
 		const Homepanda = new Competitor('homepanda', "https://www.immobiliare.it/agenzie-immobiliari/231505/homepanda/?criterio=dataModifica&ordine=desc", {
 			concurrency: {
 				page: 2
 			}
 		});
+		const Dove = new Competitor('dove', "https://www.immobiliare.it/agenzie-immobiliari/164866/dove-it/?criterio=dataModifica&ordine=desc", {
+			concurrency: {
+				page: 2
+			}
+		});		
 		const Rockagent = new Competitor('rockagent', "https://www.immobiliare.it/pro/230915/rockagent/?criterio=dataModifica&ordine=desc", {
 			concurrency: {
 				page: 2
 			}
 		});		
        
-		const [dove, homepanda, rockagent] = await Promise.all([
-			Dove.report(),
+		const [homepanda, dove, rockagent] = await Promise.all([
 			Homepanda.report(),
+			Dove.report(),
 			Rockagent.report()
 		]);
 
-		const template = `		
+		const template = `
 		<h2>Dove</h2>
 
 		<p>Totale: ${dove.tot.totitem} - € ${Number(dove.tot.totprice)}</p>
@@ -138,7 +138,7 @@ async function start () {
 			}
 		).join('')}
 		`;*/
-		let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+		let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();		
 		sendSmtpEmail.to  = [{name:'Gloria De Priori', email:'gloria.depriori@homepanda.it'}];
 		sendSmtpEmail.cc  = [
 			{name:'Alessandro Alberta', email:'alessandro.alberta@homepanda.it'},
@@ -161,6 +161,4 @@ async function start () {
 	}
 }
 
-(async () => {
-	await start()
-})();
+start().finally(()=> { process.exit(0) });
