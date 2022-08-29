@@ -7,7 +7,7 @@ RUN apk add tzdata curl\
 
 WORKDIR /usr/share/crawer
 
-COPY ./src/package*.json /usr/share/crawer/
+COPY ./src/ /usr/share/crawer/
 
 RUN npm --prefix /usr/share/crawer install --production \
     && chmod +x /usr/share/crawer/init.js
