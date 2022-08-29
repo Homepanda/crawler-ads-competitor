@@ -1,0 +1,8 @@
+FROM node:14.15.0-alpine3.12
+
+# Timezone
+RUN apk add tzdata curl\
+    && cp /usr/share/zoneinfo/Europe/Rome /etc/localtime \
+    && echo "Europe/Rome" >  /etc/timezone
+
+WORKDIR /usr/share/crawer

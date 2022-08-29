@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+    app:        
+      build:
+        context: .
+        dockerfile: Dockerfile.develop
+      volumes:
+          - ./src:/usr/share/crawer
+      tty: true
+      environment:        
+        - PROXY_URL=http://18.194.183.99:8888   
+        - SENDINBLUE_APIKEY=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
