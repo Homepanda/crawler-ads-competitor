@@ -143,7 +143,8 @@ async function start () {
 		sendSmtpEmail.cc  = [
 			{name:'Alessandro Alberta', email:'alessandro.alberta@homepanda.it'},
 			{name:'Emiliano Mancini', email:'emiliano.mancini@homepanda.it'},
-			{name:'Corrado Ronci', email:'corrado.ronci@homepanda.it'}
+			{name:'Corrado Ronci', email:'corrado.ronci@homepanda.it'},
+			{name:'Massimiliano Segalini', email:'massimiliano.segalini@homepanda.it'}
 		];
 		sendSmtpEmail.subject  = 'Report Competitor';
 		sendSmtpEmail.sender = {'name': 'No Reply Homepanda', 'email': 'no-reply@homepanda.it'};
